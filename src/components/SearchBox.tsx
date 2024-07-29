@@ -15,6 +15,7 @@ const SearchBox: FunctionComponent<SearchBoxProps> = (props) => {
   return (
     <div className="search-box">
       <input
+        placeholder="Search..."
         value={state.value}
         onChange={(e) => controller.updateText(e.target.value)}
         onKeyDown={(e) => e.key === 'Enter' && controller.submit()}

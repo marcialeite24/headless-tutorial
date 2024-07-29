@@ -1,7 +1,6 @@
 
 import { Facet as FacetController } from '@coveo/headless';
 import { useEffect, useState, FunctionComponent } from 'react';
-import { FacetSearch } from '@coveo/headless';
 
 interface FacetProps {
   controller: FacetController;

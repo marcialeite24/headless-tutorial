@@ -1,5 +1,6 @@
 import { useState, useEffect, FunctionComponent } from "react";
 import { ResultList as ResultListController } from "@coveo/headless";
+import { InteractiveResult } from "./Interative-result";
 
 interface ResultListProps {
   controller: ResultListController;
@@ -23,7 +24,9 @@ const ResultList: FunctionComponent<ResultListProps> = (props) => {
         {state.results.map((result) => (
           <li key={result.uniqueId}>
             <article>
-              <h2>{result.title}</h2>
+              <InteractiveResult result={result}>
+                <h2>{result.title}</h2>
+              </InteractiveResult>
               <p>{result.excerpt}</p>
             </article>
           </li>

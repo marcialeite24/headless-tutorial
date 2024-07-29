@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import SearchBox from "./components/SearchBox";
 import Facet from "./components/Facet";
 import ResultList from "./components/ResultList";
@@ -6,11 +6,15 @@ import ResultList from "./components/ResultList";
 import {
   searchBox as SearchBoxController,
   facet as FacetController,
-  resultList as ResultListController
+  resultList as ResultListController,
+  sort as SortController,
+  pager as PagerController
 } from './controllers/controllers'
 import './App.css'
 
 import { headlessEngine } from "./Engine";
+import { criteria, Sort } from './components/Sort';
+import Pager from './components/Pager';
 
 let didInit = false;
 
@@ -29,11 +33,13 @@ function App() {
           <SearchBox controller={SearchBoxController} />
       </div>
       <div className="main-section">
-          <div className="facet-section">
+          <div className="facet-section column">
             <Facet controller={FacetController} title="Source" />
           </div>
-          <div className="results-section">
+          <div className="results-section column">
+            <Sort controller={SortController} criteria={criteria}/>
             <ResultList controller={ResultListController} />
+            <Pager controller={PagerController} />
           </div>
       </div>
     </>

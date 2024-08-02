@@ -8,13 +8,11 @@ import {
   facet as FacetController,
   resultList as ResultListController,
   sort as SortController,
-  pager as PagerController
 } from './controllers/controllers'
 import './App.css'
 
 import { headlessEngine } from "./Engine";
 import { criteria, Sort } from './components/Sort';
-import Pager from './components/Pager';
 
 let didInit = false;
 
@@ -39,7 +37,6 @@ function App() {
           <div className="results-section column">
             <Sort controller={SortController} criteria={criteria}/>
             <ResultList controller={ResultListController} />
-            <Pager controller={PagerController} />
           </div>
       </div>
     </>

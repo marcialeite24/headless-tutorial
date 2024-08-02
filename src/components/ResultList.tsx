@@ -28,6 +28,9 @@ const ResultList: FunctionComponent<ResultListProps> = (props) => {
                 <h2>{result.title}</h2>
               </InteractiveResult>
               <p>{result.excerpt}</p>
+              {typeof result.raw.ec_images === 'string' && (
+                <img src={result.raw.ec_images} alt="" />
+              )}
             </article>
           </li>
         ))}

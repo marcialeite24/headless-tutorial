@@ -1,6 +1,6 @@
 import { useState, useEffect, FunctionComponent } from "react";
 import { ResultList as ResultListController } from "@coveo/headless";
-import { InteractiveResult } from "./InterativeResult";
+import { InteractiveResult } from "./InteractiveResult";
 
 interface ResultListProps {
   controller: ResultListController;

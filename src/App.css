@@ -19,6 +19,7 @@ img {
 .search-box {
   width: 60%;
   max-width: 500px;
+  text-align: left;
 }
 
 .search-box input {

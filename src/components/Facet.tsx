@@ -22,7 +22,7 @@ const Facet: FunctionComponent<FacetProps> = (props) => {
     );
   }
 
-  return(
+  return (
     <div className="facet">
       <h3>{props.title}</h3>
       <ul>

@@ -3,7 +3,6 @@ import {
   buildResultList,
   buildFacet,
   buildSort,
-  buildPager,
 } from "@coveo/headless";
 import { criteria } from "../components/Sort";
 import { headlessEngine } from "../Engine";
@@ -18,5 +17,3 @@ const initialCriterion = criteria[0][1];
 export const sort = buildSort(headlessEngine, {
   initialState: { criterion: initialCriterion },
 });
-
-export const pager = buildPager(headlessEngine);

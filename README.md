@@ -6,7 +6,7 @@ This project was set up with [Vite](https://vitejs.dev/guide/#scaffolding-your-f
 
 ## Setup
 
-Vite requires `Node.js` version 18+ or 20+, please upgrade if warned.
+Vite requires `Node.js` version 18+ or 20+, please upgrade if warned by your package manager.
 
 Clone or download the project and run `npm install` in the project directory.
 

@@ -1,6 +1,6 @@
 import { useState, useEffect, FunctionComponent } from "react";
 import { ResultList as ResultListController } from "@coveo/headless";
-import { InteractiveResult } from "./Interative-result";
+import { InteractiveResult } from "./InteractiveResult";
 
 interface ResultListProps {
   controller: ResultListController;
@@ -28,6 +28,9 @@ const ResultList: FunctionComponent<ResultListProps> = (props) => {
                 <h2>{result.title}</h2>
               </InteractiveResult>
               <p>{result.excerpt}</p>
+              {typeof result.raw.ec_images === 'string' && (
+                <img src={result.raw.ec_images} alt="" />
+              )}
             </article>
           </li>
         ))}

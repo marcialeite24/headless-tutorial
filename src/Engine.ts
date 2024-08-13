@@ -7,12 +7,7 @@ import {
 
 
 const FIELDS = [
-  "ec_brand",
   "ec_images",
-  "ec_price",
-  "ec_promo_price",
-  "ec_rating",
-  "ec_reviews",
 ];
 
 const registerAdditionalFields = (headlessEngine: SearchEngine) => {

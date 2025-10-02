@@ -12,6 +12,10 @@ const SearchBox: FunctionComponent<SearchBoxProps> = (props) => {
     controller.subscribe(() => setState(controller.state));
   }, [controller]);
 
+  const suggestionStyle = {
+    cursor: 'pointer',
+  };
+
   return (
     <div className="search-box">
       <input
@@ -20,6 +24,20 @@ const SearchBox: FunctionComponent<SearchBoxProps> = (props) => {
         onChange={(e) => controller.updateText(e.target.value)}
         onKeyDown={(e) => e.key === 'Enter' && controller.submit()}
       />
+      {state.suggestions.length > 0 && ( 
+        <ul>
+          {state.suggestions.map((suggestion) => {
+            return (
+              <li
+                style={suggestionStyle}
+                key={suggestion.rawValue}
+                onClick={() => controller.selectSuggestion(suggestion.rawValue)}
+                dangerouslySetInnerHTML={{__html: suggestion.highlightedValue}}
+              ></li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 }

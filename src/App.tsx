@@ -2,12 +2,15 @@ import { useEffect } from 'react'
 import SearchBox from "./components/SearchBox";
 import Facet from "./components/Facet";
 import ResultList from "./components/ResultList";
+import Pager from './components/Pager';
+import { resultTemplatesManager } from './controllers/ResultTemplatesManager';
 
 import {
   searchBox as SearchBoxController,
   facet as FacetController,
-  resultList as ResultListController,
-  sort as SortController,
+  pager as PagerController,
+  resultList,
+  sort,
 } from './controllers/controllers'
 import './App.css'
 
@@ -35,8 +38,9 @@ function App() {
             <Facet controller={FacetController} title="Source" />
           </div>
           <div className="results-section column">
-            <Sort controller={SortController} criteria={criteria}/>
-            <ResultList controller={ResultListController} />
+            <Sort controller={sort} criteria={criteria}/>
+            <ResultList controller={resultList} resultTemplatesManager={resultTemplatesManager} />
+            <Pager controller={PagerController} />
           </div>
       </div>
     </>

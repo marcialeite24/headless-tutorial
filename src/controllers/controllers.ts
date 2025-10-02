@@ -3,11 +3,25 @@ import {
   buildResultList,
   buildFacet,
   buildSort,
+  buildPager,
 } from "@coveo/headless";
 import { criteria } from "../components/Sort";
 import { headlessEngine } from "../Engine";
 
-export const searchBox = buildSearchBox(headlessEngine);
+export const searchBox = buildSearchBox(headlessEngine, {
+  options: {
+    highlightOptions: {
+      notMatchDelimiters: {
+        open: '<strong>',
+        close: '</strong>',
+      },
+      correctionDelimiters: {
+        open: '<i>',
+        close: '</i>',
+      },
+    },
+  },
+});
 export const facet = buildFacet(headlessEngine, {
   options: { field: 'source' }
 });
@@ -17,3 +31,5 @@ const initialCriterion = criteria[0][1];
 export const sort = buildSort(headlessEngine, {
   initialState: { criterion: initialCriterion },
 });
+
+export const pager = buildPager(headlessEngine);

@@ -1,19 +1,26 @@
 import { useState, useEffect, FunctionComponent } from "react";
-import { ResultList as ResultListController } from "@coveo/headless";
+import { 
+  Result, 
+  ResultList as ResultListController,
+  ResultTemplatesManager
+} from "@coveo/headless";
 import { InteractiveResult } from "./InteractiveResult";
 
 interface ResultListProps {
   controller: ResultListController;
+  resultTemplatesManager: ResultTemplatesManager<
+    (result: Result) => JSX.Element
+  >;
 }
 
-const ResultList: FunctionComponent<ResultListProps> = (props) => {
-  const { controller } = props;
+export const ResultList: FunctionComponent<ResultListProps> = (props) => {
+  const {controller, resultTemplatesManager} = props;
   const [state, setState] = useState(controller.state);
 
-  useEffect(
-    () => controller.subscribe(() => setState(controller.state)),
-    [controller]
-  );
+  useEffect(() => controller.subscribe(() => setState(controller.state)), [
+    controller,
+  ]);
+
   if (!state.results.length) {
     return <div>No results</div>;
   }
@@ -21,19 +28,14 @@ const ResultList: FunctionComponent<ResultListProps> = (props) => {
   return (
     <div className="result-list">
       <ul>
-        {state.results.map((result) => (
-          <li key={result.uniqueId}>
-            <article>
-              <InteractiveResult result={result}>
-                <h2>{result.title}</h2>
-              </InteractiveResult>
-              <p>{result.excerpt}</p>
-              {typeof result.raw.ec_images === 'string' && (
-                <img src={result.raw.ec_images} alt="" />
-              )}
-            </article>
-          </li>
-        ))}
+        {state.results.map((result) => {
+          const template = resultTemplatesManager.selectTemplate(result);
+
+          if (!template)
+            throw new Error(`No result template provided for ${result.title}.`);
+
+          return template(result);
+        })}
       </ul>
     </div>
   );

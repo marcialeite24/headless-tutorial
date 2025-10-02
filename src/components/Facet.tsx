@@ -1,6 +1,7 @@
 
 import { Facet as FacetController } from '@coveo/headless';
 import { useEffect, useState, FunctionComponent } from 'react';
+import { FacetSearch } from './FacetSearch';
 
 interface FacetProps {
   controller: FacetController;
@@ -25,6 +26,10 @@ const Facet: FunctionComponent<FacetProps> = (props) => {
   return (
     <div className="facet">
       <h3>{props.title}</h3>
+        <FacetSearch
+          controller={controller.facetSearch} 
+          facetSearchState={state.facetSearch} 
+        />
       <ul>
         {state.values.map((value) => (
           <li key={value.value}>

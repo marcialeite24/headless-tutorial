@@ -4,6 +4,7 @@ import {
   buildFacet,
   buildSort,
   buildPager,
+  buildDateFacet,
 } from "@coveo/headless";
 import { criteria } from "../components/Sort";
 import { headlessEngine } from "../Engine";
@@ -22,9 +23,11 @@ export const searchBox = buildSearchBox(headlessEngine, {
     },
   },
 });
+
 export const facet = buildFacet(headlessEngine, {
-  options: { field: 'source' }
+  options: {field: 'source', sortCriteria: 'score'},
 });
+
 export const resultList = buildResultList(headlessEngine);
 
 const initialCriterion = criteria[0][1];
@@ -33,3 +36,10 @@ export const sort = buildSort(headlessEngine, {
 });
 
 export const pager = buildPager(headlessEngine);
+
+export const dateFacet = buildDateFacet(headlessEngine, {
+  options: {
+    field: 'date',
+    generateAutomaticRanges: true,
+  },
+});

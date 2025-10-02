@@ -15,6 +15,7 @@ interface ResultListProps {
 export const ResultList: FunctionComponent<ResultListProps> = (props) => {
   const {controller, resultTemplatesManager} = props;
   const [state, setState] = useState(controller.state);
+  console.log(state);
 
   useEffect(() => controller.subscribe(() => setState(controller.state)), [
     controller,

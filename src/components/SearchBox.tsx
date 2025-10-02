@@ -24,6 +24,8 @@ const SearchBox: FunctionComponent<SearchBoxProps> = (props) => {
         onChange={(e) => controller.updateText(e.target.value)}
         onKeyDown={(e) => e.key === 'Enter' && controller.submit()}
       />
+      <button onClick={() => controller.submit()}>Search</button>
+      <button onClick={() => controller.clear()}>Clear</button>
       {state.suggestions.length > 0 && ( 
         <ul>
           {state.suggestions.map((suggestion) => {
